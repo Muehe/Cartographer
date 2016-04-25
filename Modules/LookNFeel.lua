@@ -155,7 +155,7 @@ function Cartographer_LookNFeel:OnInitialize()
 				desc = L["Scale of the World Map"],
 				type = 'range',
 				min = 0.2,
-				max = 1,
+				max = 10, -- was 1
 				step = 0.05,
 				isPercent = true,
 				get = "GetScale",
@@ -275,8 +275,8 @@ function Cartographer_LookNFeel:OnEnable()
 			local scale = self:GetScale()
 			if up then
 				scale = scale + 0.1
-				if scale > 1 then
-					scale = 1
+				if scale > 10 then  -- was 1
+					scale = 10  -- was 1
 				end
 			else
 				scale = scale - 0.1

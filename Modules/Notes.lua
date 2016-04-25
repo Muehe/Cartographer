@@ -375,8 +375,8 @@ function Cartographer_Notes:OnInitialize()
 				name = L["Icon size"],
 				desc = L["Size of the icons on the map"],
 				type = 'range',
-				min = 0.5,
-				max = 2,
+				min = 0.05, -- was 0.5
+				max = 5, -- was 2
 				step = 0.05,
 				isPercent = true,
 				get = "GetIconSize",
