@@ -1285,7 +1285,7 @@ do
 				if this.creator then
 					WorldMapTooltip:AddDoubleLine("Created by", this.creator)
 				end
-				WorldMapTooltip:SetFrameLevel(frame:GetFrameLevel()+2) -- WHDB related
+				WorldMapTooltip:SetFrameLevel(14) -- WHDB related
 				WorldMapTooltip:Show()
 			end
 		end
@@ -1787,7 +1787,7 @@ function Cartographer_Notes:ShowNote(zone, id, creator)
 		poi:SetWidth(t.width*self.db.profile.iconSize)
 		poi:SetHeight(t.height*self.db.profile.iconSize)
 		poi:SetAlpha(t.alpha)
-		if icon == "QuestionMark" then poi:SetFrameLevel(poi:GetFrameLevel()+1); end -- WHDB related
+		if icon == "QuestionMark" then poi:SetFrameLevel(13); end -- WHDB related
 		poi.texture:SetTexture(t.path)
 		poi.texture:SetTexCoord(t.cLeft, t.cRight, t.cTop, t.cBottom)
 	end
