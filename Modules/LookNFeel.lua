@@ -25,6 +25,8 @@ L:RegisterTranslations("enUS", function() return {
 	
 	["Shift-MouseWheel to change transparency"] = true,
 	["Ctrl-MouseWheel to change scale"] = true,
+	["Alt-MouseWheel to change note size"] = true,
+	["Ctrl-Left-Click to move map"] = true,
 	
 	["Lock the World Map"] = true,
 	
@@ -53,6 +55,8 @@ L:RegisterTranslations("koKR", function() return {
 	
 	["Shift-MouseWheel to change transparency"] = "Shift-스크롤 : 투명도 변경",
 	["Ctrl-MouseWheel to change scale"] = "Ctrl-스크롤 : 크기 변경",
+	["Alt-MouseWheel to change note size"] = "Alt-스크롤 : change note size", -- TODO
+	["Ctrl-Left-Click to move map"] = "Ctrl-왼쪽-클릭 : move map", -- TODO
 	
 	["Lock the World Map"] = "세계 지도의 위치를 잠금니다.",
 	
@@ -239,9 +243,11 @@ local cities = {
 }
 
 function Cartographer_LookNFeel:OnEnable()
-	Cartographer:AddToMagnifyingGlass(L["Shift-MouseWheel to change transparency"])
+	
+	Cartographer:AddToMagnifyingGlass(L["Ctrl-Left-Click to move map"]) -- WHDB related
 	Cartographer:AddToMagnifyingGlass(L["Ctrl-MouseWheel to change scale"])
-	Cartographer:AddToMagnifyingGlass("Alt-MouseWheel to change note size") -- WHDB related
+	Cartographer:AddToMagnifyingGlass(L["Alt-MouseWheel to change note size"]) -- WHDB related
+	Cartographer:AddToMagnifyingGlass(L["Shift-MouseWheel to change transparency"])
 	UIPanelWindows["WorldMapFrame"] = nil
 	WorldMapFrame:SetFrameStrata("HIGH")
 	WorldMapFrame:EnableMouse(not self.db.profile.locked)
@@ -269,9 +275,24 @@ function Cartographer_LookNFeel:OnEnable()
 		this:ClearAllPoints()
 		this:SetPoint("CENTER", "UIParent", "CENTER", x, y)
 	end)
+	local isMoving = false;
+	WorldMapButton:SetScript("OnMouseDown", function()
+		if arg1 == "LeftButton" and IsControlKeyDown() then
+			WorldMapFrame:StartMoving();
+			isMoving = true;
+		end
+	end)
+	local oldOnMouseUp = WorldMapButton:GetScript("OnMouseUp");
+	WorldMapButton:SetScript("OnMouseUp", function()
+		if arg1 == "LeftButton" and isMoving then
+			WorldMapFrame:StopMovingOrSizing();
+			isMoving = false;
+		else
+			oldOnMouseUp();
+		end
+	end)
 	WorldMapFrame:SetScript("OnMouseWheel", function()
 		local up = (arg1 == 1)
-		
 		if IsControlKeyDown() then
 			local scale = self:GetScale()
 			if up then
