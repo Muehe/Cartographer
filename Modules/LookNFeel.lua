@@ -241,6 +241,7 @@ local cities = {
 function Cartographer_LookNFeel:OnEnable()
 	Cartographer:AddToMagnifyingGlass(L["Shift-MouseWheel to change transparency"])
 	Cartographer:AddToMagnifyingGlass(L["Ctrl-MouseWheel to change scale"])
+	Cartographer:AddToMagnifyingGlass("Alt-MouseWheel to change note size") -- WHDB related
 	UIPanelWindows["WorldMapFrame"] = nil
 	WorldMapFrame:SetFrameStrata("HIGH")
 	WorldMapFrame:EnableMouse(not self.db.profile.locked)
@@ -299,6 +300,20 @@ function Cartographer_LookNFeel:OnEnable()
 				end
 			end
 			self:SetAlpha(alpha)
+		elseif IsAltKeyDown() then -- WHDB related
+			local size = Cartographer_Notes:GetIconSize()
+			if up then
+				size = size + 0.05
+				if size > 5 then
+					size = 5
+				end
+			else
+				size = size - 0.05
+				if size < 0.05 then
+					size = 0.05
+				end
+			end
+			Cartographer_Notes:SetIconSize(size)
 		end
 	end)
 	WorldMapFrame:SetResizable(true)
