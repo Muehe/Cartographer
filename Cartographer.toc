@@ -1,16 +1,16 @@
 ## Interface: 11200
-## Notes: Addon to manipulate the map
-## Title: Cartographer |cff7fff7f -Ace2-|r
-## Title-koKR: |CFFFF0000C|CFFFFFFFFartographer |cff7fff7f -Ace2-|r
-## Author: ckknight
+## Notes: Addon to manipulate the map. Slightly modified for use with WHDB addon.
+## Title: |cFF990099[WHDB]|r Cartographer |cff7fff7f -Ace2-|r
+## Title-koKR: |cFF990099[WHDB]|r |CFFFF0000C|CFFFFFFFFartographer |cff7fff7f -Ace2-|r
+## Author: ckknight, modifications by Muehe
 ## DefaultState: enabled
 ## LoadOnDemand: 0
 ## SavedVariables: CartographerDB
 ## OptionalDeps: Ace2, Babble-2.2, DewdropLib, TabletLib, TouristLib
 ## X-Category: Map
-## X-eMail: ckknight@gmail.com
-## X-Website: http://ckknight.wowinterface.com/
-## Version: 2.0
+## X-eMail: 
+## X-Website: https://www.github.com/Muehe
+## Version: see git
 
 Libs\AceLibrary\AceLibrary.lua
 Libs\AceOO-2.0\AceOO-2.0.lua
