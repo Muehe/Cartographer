@@ -1193,7 +1193,7 @@ do
 		texture:SetTexture("Interface\\TargetingFrame\\UI-RaidTargetingIcons")
 		texture:SetTexCoord(0, 0.25, 0, 0.25)
 		
-		frame:SetFrameLevel(frame:GetFrameLevel()+3)
+		frame:SetFrameLevel(11); -- WHDB related
 		frame:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 		if not OnMouseDown then
 			OnMouseDown = function()
@@ -1285,7 +1285,7 @@ do
 				if this.creator then
 					WorldMapTooltip:AddDoubleLine("Created by", this.creator)
 				end
-				WorldMapTooltip:SetFrameLevel(14) -- WHDB related
+				WorldMapTooltip:SetFrameLevel(15); -- WHDB related
 				WorldMapTooltip:Show()
 			end
 		end

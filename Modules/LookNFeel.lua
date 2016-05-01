@@ -275,15 +275,15 @@ function Cartographer_LookNFeel:OnEnable()
 		this:ClearAllPoints()
 		this:SetPoint("CENTER", "UIParent", "CENTER", x, y)
 	end)
-	local isMoving = false;
-	WorldMapButton:SetScript("OnMouseDown", function()
+	local isMoving = false; -- WHDB related
+	WorldMapButton:SetScript("OnMouseDown", function() -- WHDB related
 		if arg1 == "LeftButton" and IsControlKeyDown() then
 			WorldMapFrame:StartMoving();
 			isMoving = true;
 		end
 	end)
-	local oldOnMouseUp = WorldMapButton:GetScript("OnMouseUp");
-	WorldMapButton:SetScript("OnMouseUp", function()
+	local oldOnMouseUp = WorldMapButton:GetScript("OnMouseUp"); -- WHDB related
+	WorldMapButton:SetScript("OnMouseUp", function() -- WHDB related
 		if arg1 == "LeftButton" and isMoving then
 			WorldMapFrame:StopMovingOrSizing();
 			isMoving = false;
@@ -297,7 +297,7 @@ function Cartographer_LookNFeel:OnEnable()
 			local scale = self:GetScale()
 			if up then
 				scale = scale + 0.1
-				if scale > 10 then  -- was 1
+				if scale > 10 then  -- WHDB related, was 1
 					scale = 10  -- was 1
 				end
 			else
@@ -321,7 +321,7 @@ function Cartographer_LookNFeel:OnEnable()
 				end
 			end
 			self:SetAlpha(alpha)
-		elseif IsAltKeyDown() then -- WHDB related
+		elseif IsAltKeyDown() then
 			local size = Cartographer_Notes:GetIconSize()
 			if up then
 				size = size + 0.05
@@ -335,6 +335,10 @@ function Cartographer_LookNFeel:OnEnable()
 				end
 			end
 			Cartographer_Notes:SetIconSize(size)
+			if size > 3 then
+				size = 3
+			end
+			self.playerModel:SetModelScale(size)
 		end
 	end)
 	WorldMapFrame:SetResizable(true)
