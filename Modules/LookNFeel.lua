@@ -335,8 +335,8 @@ function Cartographer_LookNFeel:OnEnable()
 				end
 			end
 			Cartographer_Notes:SetIconSize(size)
-			if size > 3 then
-				size = 3
+			if size > 2.5 then
+				size = 2.5
 			end
 			self.playerModel:SetModelScale(size)
 		end
@@ -384,6 +384,7 @@ function Cartographer_LookNFeel:OnEnable()
 		end
 	end
 	self.playerModel:SetAlpha(self.db.profile.overlayAlpha)
+	self.playerModel:SetFrameLevel(18); -- WHDB related. Player Arrow > Normal notes. Not working right, need to investigate.
 	
 	if (GetCurrentMapZone() == 0 or cities[GetMapInfo()]) and self.db.profile.overlayAlpha > self.db.profile.alpha then
 		WorldMapDetailFrame:SetAlpha(self.db.profile.overlayAlpha)
