@@ -298,7 +298,7 @@ function Cartographer_LookNFeel:OnEnable()
 			if up then
 				scale = scale + 0.1
 				if scale > 10 then  -- WHDB related, was 1
-					scale = 10  -- was 1
+					scale = 10;  -- was 1
 				end
 			else
 				scale = scale - 0.1
@@ -321,24 +321,27 @@ function Cartographer_LookNFeel:OnEnable()
 				end
 			end
 			self:SetAlpha(alpha)
-		elseif IsAltKeyDown() then
+		elseif IsAltKeyDown() then -- WHDB related.
 			local size = Cartographer_Notes:GetIconSize()
 			if up then
 				size = size + 0.05
 				if size > 5 then
-					size = 5
+					size = 5;
 				end
 			else
 				size = size - 0.05
 				if size < 0.05 then
-					size = 0.05
+					size = 0.05;
 				end
 			end
 			Cartographer_Notes:SetIconSize(size)
-			if size > 2.5 then
-				size = 2.5
+			if not self.db.profile.largePlayer then
+				size = size*0.5;
 			end
-			self.playerModel:SetModelScale(size)
+			if size > 2.5 then
+				size = 2.5;
+			end
+			self.playerModel:SetModelScale(size);
 		end
 	end)
 	WorldMapFrame:SetResizable(true)
@@ -418,7 +421,14 @@ function Cartographer_LookNFeel:OnEnable()
 		WorldMapFrameAreaLabel:Hide()
 	end
 	
-	self.playerModel:SetModelScale(self.db.profile.largePlayer and 1.5 or 1)
+	local size = Cartographer_Notes:GetIconSize(); -- WHDB related.
+	if not self.db.profile.largePlayer then
+		size = size*0.5;
+	end
+	if size > 2.5 then
+		size = 2.5;
+	end
+	self.playerModel:SetModelScale(size);
 	
 	if WorldMapFrame:IsShown() then
 		ToggleWorldMap()
@@ -954,8 +964,14 @@ function Cartographer_LookNFeel:ToggleLargePlayerPOI(value)
 		value = not self.db.profile.useEscape
 	end
 	self.db.profile.largePlayer = value
-	
-	self.playerModel:SetModelScale(value and 1.5 or 1)
+	local size = Cartographer_Notes:GetIconSize(); -- WHDB related.
+	if not self.db.profile.largePlayer then
+		size = size*0.5;
+	end
+	if size > 2.5 then
+		size = 2.5;
+	end
+	self.playerModel:SetModelScale(size);
 end
 
 function Cartographer_LookNFeel:OnProfileEnable()
