@@ -384,7 +384,7 @@ function Cartographer_LookNFeel:OnEnable()
 		end
 	end
 	self.playerModel:SetAlpha(self.db.profile.overlayAlpha)
-	self.playerModel:SetFrameLevel(18); -- WHDB related. Player Arrow > Normal notes. Not working right, need to investigate.
+	self.playerModel:SetFrameLevel(11); -- WHDB related. Player Arrow > Normal notes. Not working right, need to investigate.
 	
 	if (GetCurrentMapZone() == 0 or cities[GetMapInfo()]) and self.db.profile.overlayAlpha > self.db.profile.alpha then
 		WorldMapDetailFrame:SetAlpha(self.db.profile.overlayAlpha)
