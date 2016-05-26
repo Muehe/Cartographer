@@ -335,8 +335,8 @@ function Cartographer_LookNFeel:OnEnable()
 				end
 			end
 			Cartographer_Notes:SetIconSize(size)
-			if not self.db.profile.largePlayer then
-				size = size*0.5;
+			if self.db.profile.largePlayer then
+				size = size*1.5;
 			end
 			if size > 2.5 then
 				size = 2.5;
@@ -422,8 +422,8 @@ function Cartographer_LookNFeel:OnEnable()
 	end
 	
 	local size = Cartographer_Notes:GetIconSize(); -- WHDB related.
-	if not self.db.profile.largePlayer then
-		size = size*0.5;
+	if self.db.profile.largePlayer then
+		size = size*1.5;
 	end
 	if size > 2.5 then
 		size = 2.5;
@@ -965,8 +965,8 @@ function Cartographer_LookNFeel:ToggleLargePlayerPOI(value)
 	end
 	self.db.profile.largePlayer = value
 	local size = Cartographer_Notes:GetIconSize(); -- WHDB related.
-	if not self.db.profile.largePlayer then
-		size = size*0.5;
+	if self.db.profile.largePlayer then
+		size = size*1.5;
 	end
 	if size > 2.5 then
 		size = 2.5;
